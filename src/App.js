@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios  from 'axios';
 import { Loader, Accordion, BeersGrid } from './components';
-import './App.css';
+import './App.scss';
 
 function App() {
 
@@ -16,7 +16,6 @@ function App() {
       ).then(response => {
         //If response is successfull we store response in local state
         //Also update isRequestFinished value
-        console.log(response.data);
         setBeers(response.data);
         setIsRequestFinished(true);
       }).catch(
@@ -30,14 +29,33 @@ function App() {
       fetchFirstBeersPage();
   }, []);
 
-  if (!isRequestFinished) {
-    return (<Loader></Loader>);
+  const getContent = () => {
+    if (!isRequestFinished) {
+      return <Loader />;
+    } else if (!beers) {
+      return (
+        <div>
+          <h3>No data</h3>
+        </div>
+      ) 
+    } else {
+      return (
+        <div>
+          <div> 
+            <h2>Acciordion</h2>
+            {beers.map(beer => {
+                return <Accordion key={`grid-item${beer.id}`} beer={beer} />
+            })}
+          </div>
+          <BeersGrid beers={beers} />
+        </div>
+        );
+      }
   }
 
   return (
-    <div>
-      <Accordion beers={beers} />
-      <BeersGrid beers={beers}/>
+    <div className="app">
+      {getContent()}
     </div>
   );
 }

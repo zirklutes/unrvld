@@ -1,8 +1,8 @@
+import '../styles/Loader.scss';
+
 function Loader() {
     return (
-      <div>
-        Spinner
-      </div>
+      <div className="loader"></div>
     );
   }
   

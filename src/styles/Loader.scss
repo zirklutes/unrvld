@@ -1,0 +1,27 @@
+@import 'variables';
+@import 'mixins';
+
+  @include keyframes-animation(loading-spinner) {
+    0% {
+      @include prefix-property(transform, rotate(0deg));
+    }
+    100% {
+      @include prefix-property(transform, rotate(360deg));
+    }
+  }
+
+  .loader {
+    border: 1rem solid $light-grey;
+    border-radius: 50%;
+    border-top: 1rem solid $light-blue;
+    width: 4rem;
+    height: 4rem;
+    -webkit-animation: loading-spinner 2s linear infinite; /* Safari */
+    animation: loading-spinner 2s linear infinite;
+    margin: auto;
+    top: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }

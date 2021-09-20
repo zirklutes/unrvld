@@ -1,0 +1,24 @@
+@import 'variables';
+
+.beers-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 8rem);
+    grid-gap: 0.3rem;
+
+     @media (min-width: $breakpoint-mobile) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: $breakpoint-laptop) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.beers-grid-item {
+    background-color: $light-grey;
+    text-align: center;
+    &:hover {
+        cursor: pointer;
+    }
+}

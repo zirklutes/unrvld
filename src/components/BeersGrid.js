@@ -1,17 +1,19 @@
 import React from 'react';
+import '../styles/Grid.scss';
 
 const BeersGrid = (props) => {
-    console.log('props: ', props);
     const {beers} = props;
 
-    if (!beers) { return <div>No data</div>}
+    if (!beers) { return <div>No data</div>;}
 
     return (
-      <div>
-          <h2>Beers grid</h2>
-          {beers.map((beer, index) => {
-            return <div key={`bear_${index}`}>{beer.name}</div>;
-        })}
+        <div>
+            <h2>Beers Grid</h2>
+            <div className="beers-grid">
+                {beers.map(beer => {
+                    return <div key={`grid-item${beer.id}`} className="beers-grid-item">{beer.name}</div>
+                })}
+            </div>
       </div>
     );
   }
